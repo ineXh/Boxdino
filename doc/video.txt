@@ -1,0 +1,6 @@
+cmd + space --> quicktime
+file -> new screen recording
+
+arrow -> SoundFlower (2ch)
+
+cmd + r --> refresh safari
