@@ -22,7 +22,7 @@ Shape.prototype = {
 		this.accel = new PVector(0, 0);
 		this.r = 50;
 		this.alpha = 0.8;
-		this.lineThick = 5;
+		this.lineThick = 10;
 		this.maxSpeed = width/20;
 		this.points = [];
 		//this.sprite = buttonCreate(resources.circle.texture, 0, 0, this.r*2);
@@ -42,12 +42,13 @@ Shape.prototype = {
 		if(usedForDebug && !debug) return;
 
 		this.clr = Utils.getRndColor();
-		this.strokeClr = Utils.getRndColor();
+		this.strokeClr = 0x00; //Utils.getRndColor();
 
 		for(var i = 0; i < input.points.length; i++){
 			this.points[i] = new PVector(input.points[i].x, input.points[i].y);
 		}
 		//console.log(this.clr)
+		//console.log(this.strokeClr)
 		this.draw();
 		this.graphics.alpha = this.alpha;
 	},
@@ -170,6 +171,7 @@ Shape.prototype = {
 		for(var i = 1; i < this.points.length; i++){
 			this.graphics.lineTo(this.points[i].x, this.points[i].y);
 		}
+		this.graphics.alpha = 1.0
 	}, // end drawLine
 	drawRect: function(notShowDir){
 		if(this.graphics) this.graphics.clear();
@@ -286,7 +288,7 @@ window.spawnCircle = function(container, x, y, r, usedForDebug){
 	shapeTemplate.r = r;
 	shapeTemplate.shapeType = constants.ShapeType.Circle;
 	shape.init(container, shapeTemplate, usedForDebug);
-	shapes.push(shape);
+	//shapes.push(shape);
 	return shape;
 }
 window.spawnLine = function(container, points){
@@ -294,7 +296,7 @@ window.spawnLine = function(container, points){
 	shapeTemplate.shapeType = constants.ShapeType.Line;
 	shapeTemplate.points = points;
 	shape.init(container, shapeTemplate);
-	shapes.push(shape);
+	//shapes.push(shape);
 	return shape;
 }
 window.spawnPoly = function(container, x, y, numVerts, r){
@@ -305,7 +307,7 @@ window.spawnPoly = function(container, x, y, numVerts, r){
 	shapeTemplate.r = r;
 	shapeTemplate.shapeType = constants.ShapeType.Poly;
 	shape.init(container, shapeTemplate);
-	shapes.push(shape);
+	//shapes.push(shape);
 	return shape;
 }
 window.spawnRect = function(container, x,y,width, height, usedForDebug){
@@ -317,7 +319,7 @@ window.spawnRect = function(container, x,y,width, height, usedForDebug){
     shapeTemplate.height = height;
     if(usedForDebug == undefined) usedForDebug = false;
     shape.init(container, shapeTemplate, usedForDebug);
-    shapes.push(shape);
+    //shapes.push(shape);
     return shape;
 }
 var spawnTri = function(container, x,y,width, height, usedForDebug){
@@ -329,7 +331,7 @@ var spawnTri = function(container, x,y,width, height, usedForDebug){
     shapeTemplate.height = height;
     if(usedForDebug == undefined) usedForDebug = false;
     shape.init(container, shapeTemplate, usedForDebug);
-    shapes.push(shape);
+    //shapes.push(shape);
     return shape;
 }
 window.spawnVertices = function(container, x, y, points, usedForDebug){
@@ -340,6 +342,6 @@ window.spawnVertices = function(container, x, y, points, usedForDebug){
 	shapeTemplate.points = points;
 	if(usedForDebug == undefined) usedForDebug = false;
 	shape.init(container, shapeTemplate, usedForDebug);
-	shapes.push(shape);
+	//shapes.push(shape);
 	return shape;
 }

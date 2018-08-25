@@ -2,7 +2,7 @@ var constants = function(){};
 module.exports = exports = constants;
 
 window.METER = 100;
-window.PXPM = 2;
+window.PXPM = 10;
 window.PI = Math.PI;
 
 constants.ShapeType = function(){};

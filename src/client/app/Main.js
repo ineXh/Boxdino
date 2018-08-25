@@ -29,8 +29,8 @@ var Engine = (function(global) {
     	var worldRenderer = app.renderer;
     	worldRenderer.view.setAttribute("id", "canvas1");
 		document.body.appendChild(worldRenderer.view);
-        
-        
+
+
         //debugger;
 
 		stage = new PIXI.Container();
@@ -45,7 +45,8 @@ var Engine = (function(global) {
 
             var cowSprite = Helper.buttonCreate(assets.cowTexture,
                      width/2, height/2, width/5);
-            stage.addChild(cowSprite)
+            //stage.addChild(cowSprite)
+            console.log('main')
 		    //renderApp();
             //renderAwesome();
             //renderPoseTest();

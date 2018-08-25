@@ -302,7 +302,7 @@ WorldHelper.createTree2 = function(x, y){
         sprite.width*0.75, sprite.height/2, true);
     backObjects.trees.push({sprite: sprite, shape: shape});
 }
-WorldHelper.createStaticFloor = function(x,y,w,h, usedForDebug){
+WorldHelper.createStaticFloor = function(world, x,y,w,h, usedForDebug){
     x = x/METER;
     y = y/METER;
     w = w/METER;
@@ -313,7 +313,7 @@ WorldHelper.createStaticFloor = function(x,y,w,h, usedForDebug){
 
     var bd  = new b2BodyDef();
     bd.set_type(Box2D.b2_staticBody);//b2_staticBody //b2_dynamicBody
-    var body = boxWorld.CreateBody(bd);
+    var body = world.CreateBody(bd);
 
     var shape = new Box2D.b2PolygonShape();
     shape.SetAsBox(w/2, h/2);
@@ -321,7 +321,7 @@ WorldHelper.createStaticFloor = function(x,y,w,h, usedForDebug){
     var fixtureDef = new b2FixtureDef();
     fixtureDef.set_density( 0 );
     fixtureDef.set_shape( shape );
-    fixture = body.CreateFixture( fixtureDef );
+    var fixture = body.CreateFixture( fixtureDef );
 
     temp.Set(x, y);//16*(Math.random()-0.5), 4.0 + 2.5*index);
     body.SetTransform(temp, 0.0);
@@ -331,7 +331,6 @@ WorldHelper.createStaticFloor = function(x,y,w,h, usedForDebug){
 
     bodies.push(body);
     shape = spawnRect(stage, x, y, w*METER, h*METER, usedForDebug);
-
     shape.body = body;
     shape.fixture = fixture;
     fixture.shape = shape;

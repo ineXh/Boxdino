@@ -6,6 +6,8 @@ window.stageHeight = 0;
 window.time = {t:0, dt: 0, count: 0};
 //var lastTime = startTime = 0;
 
+window.debug = true;
+
 window.worldRenderer = null;
 window.loader = null;
 window.loaded = false;
@@ -37,3 +39,4 @@ window.characterRight = null;
 window.world = null;
 window.shapes = [];
 window.bodies = [];
+window.walls = [];
