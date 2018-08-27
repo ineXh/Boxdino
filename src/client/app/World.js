@@ -7,7 +7,7 @@ var Shape = require('./Shape.js');
 var Wall = require('./GameObjects/Wall.js');
 var WorldHelper = require('./GameObjects/WorldHelper.js');
 
-module.exports = exports = World;
+
 
 function World(){
   this.create();
@@ -34,7 +34,8 @@ World.prototype = {
     for(var i = 0; i < 2; i++){
         //spawnRect(stage, width, -, side, side);
         //createPoly(this.world, 3, width/2, -i*side-height*0.25, side, side);
-        var poly = createPoly(this.world, 4, width/2, height/2 - i*side, side, side); shapes.push(poly)
+        //var poly = createPoly(this.world, 4, width/2, height/2 - i*side, side, side); shapes.push(poly)
+        var poly = WorldHelper.createPoly(this.world, 4, width/2, height/2 - i*side, side, side); shapes.push(poly)
         //createBall(Math.random()*width, -getRandomInt(50,height/2), getRandomArbitrary(0.5, 1)*width/20);
         //createRect(Math.random()*width, -getRandomInt(50,height/2), getRandomArbitrary(0.5, 1)*width/10, getRandomArbitrary(0.5, 1)*height/10);
         //createPoly(getRandomInt(3,8), Math.random()*width, -getRandomInt(50,height/2), getRandomArbitrary(0.5, 1)*width/10);
@@ -94,55 +95,6 @@ function createGround(world){
     return shape;
 } // end createGround
 
-function createPoly(world, numVerts, x, y, r){
-    x = x/METER;
-    y = y/METER;
-    r = r/METER;
-    var ZERO = new b2Vec2(0, 0);
-    var temp = new b2Vec2(0, 0);
-
-    var bd  = new b2BodyDef();
-    bd.set_type(Box2D.b2_dynamicBody);
-    var body = world.CreateBody(bd);
-    //var shape = new Box2D.b2PolygonShape();
-    //shape.SetAsBox(85/2/METER, 85/2/METER);
-
-    var verts = [];
-    var width = 85;
-    var height = 85;
-    /*verts.push( new b2Vec2( width/2/METER, height/3 /2 /METER) );
-    verts.push( new b2Vec2( 0,-2*height/3/2/METER) );
-    verts.push( new b2Vec2( -width/2/METER, height/3 /2 /METER) );*/
-    //radius = 85/2/METER;
-    for (var i = 0; i < numVerts; i++) {
-        var angle = i / numVerts * 360.0 * Math.PI / 180;
-        verts.push( new b2Vec2( r * Math.sin(angle), r * -Math.cos(angle) ) );
-    }
-
-    var shape = createPolygonShape(verts);
-
-    var fixtureDef = new b2FixtureDef();
-    fixtureDef.set_density( 1 );
-    fixtureDef.set_friction( 1 );
-    fixtureDef.set_restitution(0.4);
-    fixtureDef.set_shape( shape );
-    var fixture = body.CreateFixture( fixtureDef );
-
-    temp.Set(x, y);//16*(Math.random()-0.5), 4.0 + 2.5*index);
-    body.SetTransform(temp, 0.0);
-    body.SetLinearVelocity(ZERO);
-    body.SetAwake(1);
-    body.SetActive(1);
-
-    bodies.push(body);
-    //shape = spawnTri(stage, 25, 5, 85, 85);
-    var shape = spawnPoly(stage, 0, 0, numVerts, r*METER);
-    //debugger;
-    shape.body = body;
-    //shapes.push(shape) // already pushed in spawnPoly
-    return shape;
-}
-
 /*
 function createBorder(width, height){
     wall = new Wall(blockSide*0.5, height/2, height, 3*PI/2, 0);    walls.push(wall);
@@ -161,3 +113,5 @@ function createWalls(data){
     }
     //wall = new Wall(width/2, height - blockSide*0.5, width, PI, wall.clrIndex); walls.push(wall);
 }*/
+World.createPoly = createPoly;
+module.exports = exports = World;

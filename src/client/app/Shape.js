@@ -310,7 +310,7 @@ window.spawnPoly = function(container, x, y, numVerts, r){
 	//shapes.push(shape);
 	return shape;
 }
-window.spawnRect = function(container, x,y,width, height, usedForDebug){
+window.spawnRect = function(container, x, y, width, height, usedForDebug){
 	var shape = new Shape();
     shapeTemplate.x = x;
     shapeTemplate.y = y;

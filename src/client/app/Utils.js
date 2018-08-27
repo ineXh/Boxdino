@@ -1,4 +1,6 @@
 //var Effects = require('./Particle/Effects.js');
+var World = require('./World.js');
+var WorldHelper = require('./GameObjects/WorldHelper.js');
 var Utils = function(){};
 module.exports = exports = Utils;
 
@@ -74,14 +76,21 @@ function onMouseUp(event){
 }
 
 function onTouchStart(event){
+  console.log('onTouchStart')
   if(spriteTouched) return;
 
   //event.preventDefault();
 	getMouse(event, event.changedTouches[0]);
-  //console.log('mouse pos: x ' + mousePos.stageX/width + ', y ' + mousePos.stageY/height);
+  console.log('mouse pos: x ' + mousePos.stageX/width + ', y ' + mousePos.stageY/height);
 
   mousePos.touched = true;
-  if(userInterface) userInterface.onTouchStart();
+
+  var side = width/25;
+  // var poly = WorldHelper.createPoly(world.world, 4, width/2, height/2, side, side); shapes.push(poly)
+  var poly = WorldHelper.createPoly(world.world, 4, mousePos.stageX, mousePos.stageY, side, side); shapes.push(poly)
+
+  //debugger;
+  //if(userInterface) userInterface.onTouchStart();
   //if(verticesRecorder.add(mousePos.stageX/width, mousePos.stageY/height)) return;
   //spawnCircle(stage, mousePos.x/METER, mousePos.y/METER, 85/2);
   //spawnTri(stage, mousePos.x/METER, mousePos.y/METER, 85, 85);
@@ -113,8 +122,8 @@ function onTouchMove(event){
     //stage.x -= mousePos.px - mousePos.x;
     //stage.y -= mousePos.py - mousePos.y;
   onMultiTouchMove(event);
-  if(mapEditor) mapEditor.onTouchMove(event);
-  if(userInterface) userInterface.onTouchMove();
+  //if(mapEditor) mapEditor.onTouchMove(event);
+  //if(userInterface) userInterface.onTouchMove();
 
 } // end onTouchMove
 function onMultiTouchMove(event){
@@ -133,12 +142,13 @@ function onTouchEnd(event){
 	//getMouse(event);
 	getMouse(event, event.changedTouches[0]);
 	mousePos.touched = false;
-  if(userInterface) userInterface.onTouchEnd();
+  //if(userInterface) userInterface.onTouchEnd();
 
 	//path.addPoint(mousePos.x, mousePos.y);
 	//path.drawPath();
 }
 Utils.addListeners = function(renderer){
+  console.log('addListeners')
     renderer.view.addEventListener("mousedown", onMouseStart, true);
     renderer.view.addEventListener("mouseup", onMouseUp, true);
     renderer.view.addEventListener("mousemove", onMouseMove, true);

@@ -330,7 +330,7 @@ WorldHelper.createStaticFloor = function(world, x,y,w,h, usedForDebug){
     body.SetActive(1);
 
     bodies.push(body);
-    shape = spawnRect(stage, x, y, w*METER, h*METER, usedForDebug);
+    var shape = spawnRect(stage, x, y, w*METER, h*METER, usedForDebug);
     shape.body = body;
     shape.fixture = fixture;
     fixture.shape = shape;
@@ -346,3 +346,51 @@ WorldHelper.createSensorRect = function(x,y,w,h){
 
 
 
+WorldHelper.createPoly = function(world, numVerts, x, y, r){
+    x = x/METER;
+    y = y/METER;
+    r = r/METER;
+    var ZERO = new b2Vec2(0, 0);
+    var temp = new b2Vec2(0, 0);
+
+    var bd  = new b2BodyDef();
+    bd.set_type(Box2D.b2_dynamicBody);
+    var body = world.CreateBody(bd);
+    //var shape = new Box2D.b2PolygonShape();
+    //shape.SetAsBox(85/2/METER, 85/2/METER);
+
+    var verts = [];
+    var width = 85;
+    var height = 85;
+    /*verts.push( new b2Vec2( width/2/METER, height/3 /2 /METER) );
+    verts.push( new b2Vec2( 0,-2*height/3/2/METER) );
+    verts.push( new b2Vec2( -width/2/METER, height/3 /2 /METER) );*/
+    //radius = 85/2/METER;
+    for (var i = 0; i < numVerts; i++) {
+        var angle = i / numVerts * 360.0 * Math.PI / 180;
+        verts.push( new b2Vec2( r * Math.sin(angle), r * -Math.cos(angle) ) );
+    }
+
+    var shape = createPolygonShape(verts);
+
+    var fixtureDef = new b2FixtureDef();
+    fixtureDef.set_density( 1 );
+    fixtureDef.set_friction( 1 );
+    fixtureDef.set_restitution(0.4);
+    fixtureDef.set_shape( shape );
+    var fixture = body.CreateFixture( fixtureDef );
+
+    temp.Set(x, y);//16*(Math.random()-0.5), 4.0 + 2.5*index);
+    body.SetTransform(temp, 0.0);
+    body.SetLinearVelocity(ZERO);
+    body.SetAwake(1);
+    body.SetActive(1);
+
+    bodies.push(body);
+    //shape = spawnTri(stage, 25, 5, 85, 85);
+    var shape = spawnPoly(stage, 0, 0, numVerts, r*METER);
+    //debugger;
+    shape.body = body;
+    //shapes.push(shape) // already pushed in spawnPoly
+    return shape;
+}

@@ -6,7 +6,8 @@ window.stageHeight = 0;
 window.time = {t:0, dt: 0, count: 0};
 //var lastTime = startTime = 0;
 
-window.debug = true;
+// window.debug = true;
+window.debug = false;
 
 window.worldRenderer = null;
 window.loader = null;
@@ -14,6 +15,8 @@ window.loaded = false;
 window.resources = null;
 window.stage0 = null;
 window.stage = null;
+
+window.spriteTouched = false;
 
 // Modules
 window.updateQueue = null;

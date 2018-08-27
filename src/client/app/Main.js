@@ -6,7 +6,7 @@ var UpdateQueue = require('./UpdateQueue.js');
 var SoundSystem = require('./SoundSystem.js');
 var Helper = require('./Helper.js');
 var World = require('./World.js');
-
+var Utils = require('./Utils.js');
 import Global from 'script-loader!./Global.js';
 //import Box2D from 'script-loader!./lib/Box2D_v2.3.1_min.js';
 //import Box2Dhelper from 'script-loader!./lib/embox2d-helpers.js';
@@ -30,6 +30,8 @@ var Engine = (function(global) {
     	worldRenderer.view.setAttribute("id", "canvas1");
 		document.body.appendChild(worldRenderer.view);
 
+        Utils.addListeners(worldRenderer);
+
 
         //debugger;
 
@@ -46,7 +48,7 @@ var Engine = (function(global) {
             var cowSprite = Helper.buttonCreate(assets.cowTexture,
                      width/2, height/2, width/5);
             //stage.addChild(cowSprite)
-            console.log('main')
+            //console.log('main')
 		    //renderApp();
             //renderAwesome();
             //renderPoseTest();
@@ -62,6 +64,9 @@ var Engine = (function(global) {
             shapes.forEach(function(s){
                 s.update();
              });
+            /*walls.forEach(function(w){
+                w.shape.update();
+             });*/
 	    }
 		function animate() {
             requestAnimationFrame(animate);
