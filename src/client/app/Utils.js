@@ -76,18 +76,18 @@ function onMouseUp(event){
 }
 
 function onTouchStart(event){
-  console.log('onTouchStart')
+  //console.log('onTouchStart')
   if(spriteTouched) return;
 
   //event.preventDefault();
 	getMouse(event, event.changedTouches[0]);
-  console.log('mouse pos: x ' + mousePos.stageX/width + ', y ' + mousePos.stageY/height);
+  //console.log('mouse pos: x ' + mousePos.stageX/width + ', y ' + mousePos.stageY/height);
 
   mousePos.touched = true;
 
   var side = width/25;
   // var poly = WorldHelper.createPoly(world.world, 4, width/2, height/2, side, side); shapes.push(poly)
-  var poly = WorldHelper.createPoly(world.world, 4, mousePos.stageX, mousePos.stageY, side, side); shapes.push(poly)
+  var poly = WorldHelper.createPoly(world.world, 3, mousePos.stageX, mousePos.stageY, side, side); shapes.push(poly)
 
   //debugger;
   //if(userInterface) userInterface.onTouchStart();

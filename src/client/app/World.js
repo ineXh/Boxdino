@@ -113,5 +113,4 @@ function createWalls(data){
     }
     //wall = new Wall(width/2, height - blockSide*0.5, width, PI, wall.clrIndex); walls.push(wall);
 }*/
-World.createPoly = createPoly;
 module.exports = exports = World;

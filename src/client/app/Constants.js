@@ -19,15 +19,16 @@ constants.BoxObjectType = function(){};
 
 //function BoxObjectType(){}
 constants.BoxObjectType.Invalid = -1;
-constants.BoxObjectType.Car = 0;
-constants.BoxObjectType.TrackTrigger = 1;
-constants.BoxObjectType.Obstacle = 2;
-constants.BoxObjectType.Wall = 3;
-constants.BoxObjectType.Field = 4;
-constants.BoxObjectType.RoadBlock = 5;
-constants.BoxObjectType.Puddle = 6;
-constants.BoxObjectType.Flag = 7;
-constants.BoxObjectType.Tire = 8;
+constants.BoxObjectType.Poly = 0;
+// constants.BoxObjectType.Car = 0;
+// constants.BoxObjectType.TrackTrigger = 1;
+// constants.BoxObjectType.Obstacle = 2;
+// constants.BoxObjectType.Wall = 3;
+// constants.BoxObjectType.Field = 4;
+// constants.BoxObjectType.RoadBlock = 5;
+// constants.BoxObjectType.Puddle = 6;
+// constants.BoxObjectType.Flag = 7;
+// constants.BoxObjectType.Tire = 8;
 
 constants.CharacterType = function(){};
 constants.CharacterType.Cat = 0;

@@ -60,7 +60,7 @@ Shape.prototype = {
 	disable: function(){
 		if(this.graphics) this.container.removeChild(this.graphics);
 		if(this.body != null) this.body.SetActive(false);
-		index = shapes.indexOf(this);
+		var index = shapes.indexOf(this);
 		shapes.splice(index,1);
 	},
 	clean: function(){

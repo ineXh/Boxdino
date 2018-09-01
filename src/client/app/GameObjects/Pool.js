@@ -9,29 +9,22 @@ var Tire = require('./Tire.js');
 module.exports = exports = Pool;
 function Pool() {
 	this.complete = false;
+	this.pool = {};
 	this.loadPool();
 	this.createLookupTables();
 	this.complete = true;
 }
 Pool.prototype = {
 	loadPool: function(){
-        this.createRoadBlocks(4);
-        this.createPuddles(2);
-        this.createFlags(1);
-        this.createTires(10);
+        this.creatPoly(4);
+
 	},
 	createLookupTables: function(){
 		this.borrowLookup = {};
-		this.borrowLookup[constants.BoxObjectType.RoadBlock] = this.borrowRoadBlock;
-		this.borrowLookup[constants.BoxObjectType.Puddle] = this.borrowPuddle;
-		this.borrowLookup[constants.BoxObjectType.Flag] = this.borrowFlag;
-		this.borrowLookup[constants.BoxObjectType.Tire] = this.borrowTire;
+		this.borrowLookup[constants.BoxObjectType.Poly] = this.borrowPoly;
 
 		this.returnLookup = {};
-		this.returnLookup[constants.BoxObjectType.RoadBlock] = this.returnRoadBlock;
-		this.returnLookup[constants.BoxObjectType.Puddle] = this.returnPuddle;
-		this.returnLookup[constants.BoxObjectType.Flag] = this.returnFlag;
-		this.returnLookup[constants.BoxObjectType.Tire] = this.returnTire;
+		this.returnLookup[constants.BoxObjectType.Poly] = this.returnPoly;
 	},
 	borrow : function(type){
 		return this.borrowLookup[type].call(this);
@@ -45,83 +38,25 @@ Pool.prototype = {
 		return this.returnLookup[type].call(this, item);
 	},
 	//
-	createFlags: function(num){
-		this.flags = [];
-		this.addFlags(num);
+
+    createPoly: function(num){
+		this.pool[constants.BoxObjectType.Poly] = [];
+		this.addPolys(num);
 	},
-	addFlags : function(amount) {
+	addPolys : function(amount) {
 	  for (var i = 0; i < amount; i++){
-	    var item = new Flag();
-	    this.flags.push(item);
+	    //var item = new RoadBlock();
+	    this.pool[constants.BoxObjectType.Poly].push(item);
 	  }
 	},
-    borrowFlag : function(){
-        //console.log("borrowFlag");
-        if(this.flags.length >= 1) return this.flags.shift();
-        else return null;
-    },
-    returnFlag: function(item){
-        //console.log("returnFlag");
-        this.flags.push(item);
-    },
-	//
-	createPuddles: function(num){
-		this.puddles = [];
-		this.addPuddles(num);
-	},
-	addPuddles : function(amount) {
-	  for (var i = 0; i < amount; i++){
-	    var item = new Puddle();
-	    this.puddles.push(item);
-	  }
-	},
-    borrowPuddle : function(){
-        //console.log("borrowPuddle");
-        if(this.puddles.length >= 1) return this.puddles.shift();
-        else return null;
-    },
-    returnPuddle: function(item){
-        //console.log("returnPuddle");
-        this.puddles.push(item);
-    },
-    //
-    createRoadBlocks: function(num){
-		this.roadblocks = [];
-		this.addRoadBlocks(num);
-	},
-	addRoadBlocks : function(amount) {
-	  for (var i = 0; i < amount; i++){
-	    var item = new RoadBlock();
-	    this.roadblocks.push(item);
-	  }
-	},
-    borrowRoadBlock : function(){
+    borrowPoly : function(){
         //console.log("borrowRoadBlock");
-        if(this.roadblocks.length >= 1) return this.roadblocks.shift();
+        if(this.pool[constants.BoxObjectType.Poly].length >= 1) return this.pool[constants.BoxObjectType.Poly].shift();
         else return null;
     },
-    returnRoadBlock: function(item){
+    returnPoly: function(item){
         //console.log("returnRoadBlock");
-        this.roadblocks.push(item);
+        this.pool[constants.BoxObjectType.Poly].push(item);
     },
     //
-	createTires: function(num){
-		this.tires = [];
-		this.addTires(num);
-	},
-	addTires : function(amount) {
-	  for (var i = 0; i < amount; i++){
-	    var item = new Tire();
-	    this.tires.push(item);
-	  }
-	},
-    borrowTire : function(){
-        //console.log("borrowTire");
-        if(this.tires.length >= 1) return this.tires.shift();
-        else return null;
-    },
-    returnTire: function(item){
-        //console.log("returnTire");
-        this.tires.push(item);
-    },
 } // end Pool
