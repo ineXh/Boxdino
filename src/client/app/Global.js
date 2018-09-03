@@ -16,6 +16,7 @@ window.resources = null;
 window.stage0 = null;
 window.stage = null;
 
+window.tempb2Vec2 = null;
 window.spriteTouched = false;
 
 // Modules
@@ -40,6 +41,8 @@ window.characterLeft2 = null;
 window.characterRight = null;
 
 window.world = null;
+window.pool = null;
+window.stageObjects = {};
 window.shapes = [];
 window.bodies = [];
 window.walls = [];

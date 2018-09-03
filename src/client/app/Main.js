@@ -7,6 +7,7 @@ var SoundSystem = require('./SoundSystem.js');
 var Helper = require('./Helper.js');
 var World = require('./World.js');
 var Utils = require('./Utils.js');
+var Pool = require('./GameObjects/Pool.js')
 import Global from 'script-loader!./Global.js';
 //import Box2D from 'script-loader!./lib/Box2D_v2.3.1_min.js';
 //import Box2Dhelper from 'script-loader!./lib/embox2d-helpers.js';
@@ -44,9 +45,10 @@ var Engine = (function(global) {
             updateQueue = new UpdateQueue()
 
             world = new World();
+            pool = new Pool();
 
-            var cowSprite = Helper.buttonCreate(assets.cowTexture,
-                     width/2, height/2, width/5);
+            // var cowSprite = Helper.buttonCreate(assets.cowTexture,
+            //          width/2, height/2, width/5);
             //stage.addChild(cowSprite)
             //console.log('main')
 		    //renderApp();

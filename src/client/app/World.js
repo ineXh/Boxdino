@@ -15,6 +15,7 @@ function World(){
 World.prototype = {
   create: function(){
   	using(Box2D, "b2.+");
+    tempb2Vec2 = new b2Vec2(0, 0);
     var gravity = new Box2D.b2Vec2(0.0, 10.0);
     this.world  = new Box2D.b2World(gravity);
 
@@ -25,7 +26,7 @@ World.prototype = {
 
     //wall = new Wall(data.walls[i].x*width, data.walls[i].y*height,
     //        data.walls[i].lengthW*width + data.walls[i].lengthH*height, data.walls[i].angle, 0);    walls.push(wall);
-    window.blocksAcrossWidth = 16;
+    window.blocksAcrossWidth = 24;
     window.MPB = width/PXPM/blocksAcrossWidth;
     window.blockSide = 1 * MPB * PXPM; // 1 block side ==> pixel
     //var wall = new Wall(this.world, width/2 , 0      , width , 0, 0);    walls.push(wall);
@@ -35,7 +36,7 @@ World.prototype = {
         //spawnRect(stage, width, -, side, side);
         //createPoly(this.world, 3, width/2, -i*side-height*0.25, side, side);
         //var poly = createPoly(this.world, 4, width/2, height/2 - i*side, side, side); shapes.push(poly)
-        var poly = WorldHelper.createPoly(this.world, 4, width/2, height/2 - i*side, side, side); shapes.push(poly)
+        //var poly = WorldHelper.createPoly(this.world, 4, width/2, height/2 - i*side, side, side); shapes.push(poly)
         //createBall(Math.random()*width, -getRandomInt(50,height/2), getRandomArbitrary(0.5, 1)*width/20);
         //createRect(Math.random()*width, -getRandomInt(50,height/2), getRandomArbitrary(0.5, 1)*width/10, getRandomArbitrary(0.5, 1)*height/10);
         //createPoly(getRandomInt(3,8), Math.random()*width, -getRandomInt(50,height/2), getRandomArbitrary(0.5, 1)*width/10);

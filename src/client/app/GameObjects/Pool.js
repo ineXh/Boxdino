@@ -1,9 +1,10 @@
 var constants = require('./../Constants.js');
 var Assets = require('./../loadAssets.js');
-var Flag = require('./Flag.js');
-var RoadBlock = require('./RoadBlock.js');
-var Puddle = require('./Puddle.js');
-var Tire = require('./Tire.js');
+//var Flag = require('./Flag.js');
+//var RoadBlock = require('./RoadBlock.js');
+//var Puddle = require('./Puddle.js');
+//var Tire = require('./Tire.js');
+var Triangle = require('./Triangle.js');
 
 
 module.exports = exports = Pool;
@@ -16,7 +17,7 @@ function Pool() {
 }
 Pool.prototype = {
 	loadPool: function(){
-        this.creatPoly(4);
+        this.createPoly(400);
 
 	},
 	createLookupTables: function(){
@@ -35,17 +36,18 @@ Pool.prototype = {
 			item = null;
 			return;
 		}
-		return this.returnLookup[type].call(this, item);
+		this.returnLookup[type].call(this, item);
+		return;
 	},
 	//
-
     createPoly: function(num){
 		this.pool[constants.BoxObjectType.Poly] = [];
 		this.addPolys(num);
 	},
 	addPolys : function(amount) {
 	  for (var i = 0; i < amount; i++){
-	    //var item = new RoadBlock();
+	  	var item = new Triangle();
+	    //item.disable();
 	    this.pool[constants.BoxObjectType.Poly].push(item);
 	  }
 	},
@@ -55,7 +57,7 @@ Pool.prototype = {
         else return null;
     },
     returnPoly: function(item){
-        //console.log("returnRoadBlock");
+        //console.log("returnPoly");
         this.pool[constants.BoxObjectType.Poly].push(item);
     },
     //

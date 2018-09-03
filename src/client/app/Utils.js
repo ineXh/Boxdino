@@ -52,17 +52,17 @@ function onMouseStart(event){
 	getMouse(event, undefined);
   //console.log('mouse pos: x ' + mousePos.stageX/width + ', y ' + mousePos.stageY/height);
 	mousePos.touched = true;
-  if(userInterface) userInterface.onTouchStart(event);
+  // if(userInterface) userInterface.onTouchStart(event);
   //if(verticesRecorder.add(mousePos.xPct, mousePos.yPct)) return;
   //createPoly(getRandomInt(3,8), mousePos.stageX, mousePos.stageY, getRandomRange(0.5, 1)*width/10);
-  if(mapEditor) mapEditor.onTouchStart(event);
+  // if(mapEditor) mapEditor.onTouchStart(event);
 
 }
 function onMouseMove(event){
   if(!mousePos.touched) return;
   //console.log("onMouseMove")
 	getMouse(event, undefined);
-  if(mapEditor) mapEditor.onTouchMove(event);
+  // if(mapEditor) mapEditor.onTouchMove(event);
 
 }
 function onMouseUp(event){
@@ -87,8 +87,8 @@ function onTouchStart(event){
 
   var side = width/25;
   // var poly = WorldHelper.createPoly(world.world, 4, width/2, height/2, side, side); shapes.push(poly)
-  var poly = WorldHelper.createPoly(world.world, 3, mousePos.stageX, mousePos.stageY, side, side); shapes.push(poly)
-
+  //var poly = WorldHelper.createPoly(world.world, 3, mousePos.stageX, mousePos.stageY, side, side); shapes.push(poly)
+  WorldHelper.spawnPoly(mousePos.stageX, mousePos.stageY);
   //debugger;
   //if(userInterface) userInterface.onTouchStart();
   //if(verticesRecorder.add(mousePos.stageX/width, mousePos.stageY/height)) return;
@@ -148,23 +148,23 @@ function onTouchEnd(event){
 	//path.drawPath();
 }
 Utils.addListeners = function(renderer){
-  console.log('addListeners')
-    renderer.view.addEventListener("mousedown", onMouseStart, true);
-    renderer.view.addEventListener("mouseup", onMouseUp, true);
-    renderer.view.addEventListener("mousemove", onMouseMove, true);
-    renderer.view.addEventListener("touchstart", onTouchStart, true);
-    renderer.view.addEventListener("touchend", onTouchEnd, true);
-    renderer.view.addEventListener("touchmove", onTouchMove, true);
-    renderer.view.addEventListener("backbutton", backButtonTap, true);
+  // console.log('addListeners')
+  renderer.view.addEventListener("mousedown", onMouseStart, true);
+  renderer.view.addEventListener("mouseup", onMouseUp, true);
+  renderer.view.addEventListener("mousemove", onMouseMove, true);
+  renderer.view.addEventListener("touchstart", onTouchStart, true);
+  renderer.view.addEventListener("touchend", onTouchEnd, true);
+  renderer.view.addEventListener("touchmove", onTouchMove, true);
+  renderer.view.addEventListener("backbutton", backButtonTap, true);
 }
 function removeListeners(renderer){
-    renderer.view.removeEventListener("mousedown", onMouseStart, true);
-    renderer.view.removeEventListener("mouseup", onMouseUp, true);
-    renderer.view.removeEventListener("mousemove", onMouseMove, true);
-    renderer.view.removeEventListener("touchstart", onTouchStart, true);
-    renderer.view.removeEventListener("touchend", onTouchEnd, true);
-    renderer.view.removeEventListener("touchmove", onTouchMove, true);
-    renderer.view.removeEventListener("backbutton", backButtonTap, true);
+  renderer.view.removeEventListener("mousedown", onMouseStart, true);
+  renderer.view.removeEventListener("mouseup", onMouseUp, true);
+  renderer.view.removeEventListener("mousemove", onMouseMove, true);
+  renderer.view.removeEventListener("touchstart", onTouchStart, true);
+  renderer.view.removeEventListener("touchend", onTouchEnd, true);
+  renderer.view.removeEventListener("touchmove", onTouchMove, true);
+  renderer.view.removeEventListener("backbutton", backButtonTap, true);
 }
 
 function backButtonTap(){

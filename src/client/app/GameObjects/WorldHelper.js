@@ -9,9 +9,9 @@ WorldHelper.clean = function(){
     for (var i = stageSprites.length - 1; i >= 0; i--) {
             var sprite = stageSprites[i];
             stage.removeChild(sprite);
-            stageB.removeChild(sprite);
-            stageBb.removeChild(sprite);
-            stageSprites.splice(i,1);
+            //stageB.removeChild(sprite);
+            //stageBb.removeChild(sprite);
+            //stageSprites.splice(i,1);
     }
     for(id in backObjects){
         for (var i = backObjects[id].length - 1; i >= 0; i--) {
@@ -23,7 +23,7 @@ WorldHelper.clean = function(){
             }else{
                 if (obj.hasOwnProperty("sprite")){
                     stageB.removeChild(obj.sprite);
-                    stageBb.removeChild(obj.sprite);
+                    //stageBb.removeChild(obj.sprite);
                     //obj.sprite = null;
                 }
                 if (obj.hasOwnProperty("shape")){
@@ -36,6 +36,7 @@ WorldHelper.clean = function(){
         backObjects[id].length = 0;
     }
 } // end clean
+
 WorldHelper.createBackFrontObjects = function(data){
     WorldHelper.createCows(data.cow);
     WorldHelper.createStumps(data.stump);
@@ -394,3 +395,52 @@ WorldHelper.createPoly = function(world, numVerts, x, y, r){
     //shapes.push(shape) // already pushed in spawnPoly
     return shape;
 }
+WorldHelper.spawnPoly = function(x, y){
+    var poly = pool.borrow(constants.BoxObjectType.Poly);
+    if(poly == null){
+        //console.log('no more poly in pool')
+        return;
+    }
+    poly.init(x, y);
+    if(stageObjects[constants.BoxObjectType.Poly] == undefined) stageObjects[constants.BoxObjectType.Poly] = [];
+    stageObjects[constants.BoxObjectType.Poly].push(poly);
+    // poly.enable();
+    // poly.setPosition(x/METER, y/METER);
+    // //this.shape.setAngle(PI/2+PI);
+    // poly.setAngle(0);
+    // //this.shape.setAngle(PI/2);
+    // //this.sprite.x = x;
+    // //this.sprite.y = y;
+    // stage.addChild(this.sprite);
+    // updateQueue.add(this);
+}
+
+WorldHelper.cleanStageObjects = function(){
+    console.log('cleanStageObjects')
+    for(var type in stageObjects){
+        //debugger;
+        for (var i = stageObjects[type].length - 1; i >= 0; i--) {
+            var obj = stageObjects[type][i];
+            //if (obj.hasOwnProperty("clean")){
+            if (obj.clean != undefined){
+                //debugger;
+                obj.clean();
+                //console.log('obj clean')
+                //pool.return(obj);
+            }else{
+                if (obj.hasOwnProperty("sprite")){
+                    stage.removeChild(obj.sprite);
+                    //stageBb.removeChild(obj.sprite);
+                if (obj.hasOwnProperty("shape")){
+                    //obj.sprite = null;
+                }
+                    obj.shape.disable();
+                    //obj.shape = null;
+                }
+            }
+            stageObjects[type].splice(i,1);
+        }
+        stageObjects[type].length = 0;
+    }   
+} // end cleanStageObjects
+window.clean = WorldHelper.cleanStageObjects;
