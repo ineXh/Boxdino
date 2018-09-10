@@ -15,7 +15,7 @@ Triangle.prototype = {
         // 0, 0, width/40);
         // density = 25000;
         var usedForDebug = true;
-        var side = width/25;
+        var side = width/20;
         this.shape = WorldHelper.createPoly(world.world, 3, 100, 100, side, side); //shapes.push(item)
         this.shape.disable()
         //this.shape = createBall(width*0.0, height*0.0, this.sprite.width/2, density, usedForDebug);

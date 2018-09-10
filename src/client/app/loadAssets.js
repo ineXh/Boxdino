@@ -5,19 +5,19 @@ var Assets = function(){};
 var loadAssets = function(cb){
 	PIXI.loader
 		
-		.add('chick', 'src/client/assets/chick.png')
-		.add('cow', 'src/client/assets/cow.png')
+		.add('chick', 'client/assets/chick.png')
+		.add('cow', 'client/assets/cow.png')
 
-		.add('blockrow'		, 'src/client/assets/blockrow.png')
-		.add('block4blue'	, 'src/client/assets/block4blue.png')
-		.add('block4green'	, 'src/client/assets/block4green.png')
-		.add('block4red'	, 'src/client/assets/block4red.png')
-		.add('block4yellow'	, 'src/client/assets/block4yellow.png')
+		.add('blockrow'		, 'client/assets/blockrow.png')
+		.add('block4blue'	, 'client/assets/block4blue.png')
+		.add('block4green'	, 'client/assets/block4green.png')
+		.add('block4red'	, 'client/assets/block4red.png')
+		.add('block4yellow'	, 'client/assets/block4yellow.png')
 
-		.add('blockblue'	, 'src/client/assets/blockblue.png')
-		.add('blockgreen'	, 'src/client/assets/blockgreen.png')
-		.add('blockred'		, 'src/client/assets/blockred.png')
-		.add('blockyellow'	, 'src/client/assets/blockyellow.png')
+		.add('blockblue'	, 'client/assets/blockblue.png')
+		.add('blockgreen'	, 'client/assets/blockgreen.png')
+		.add('blockred'		, 'client/assets/blockred.png')
+		.add('blockyellow'	, 'client/assets/blockyellow.png')
 
 		.load(cb.bind(this));
 } // end loadAssets

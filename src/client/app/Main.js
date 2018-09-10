@@ -8,7 +8,9 @@ var Helper = require('./Helper.js');
 var World = require('./World.js');
 var Utils = require('./Utils.js');
 var Pool = require('./GameObjects/Pool.js')
+var Network = require('./Network.js')
 import Global from 'script-loader!./Global.js';
+//import Socket from 'script-loader!https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js;
 //import Box2D from 'script-loader!./lib/Box2D_v2.3.1_min.js';
 //import Box2Dhelper from 'script-loader!./lib/embox2d-helpers.js';
 //import SoundJS from 'script-loader!./soundjs-NEXT.min.js';
@@ -46,6 +48,8 @@ var Engine = (function(global) {
 
             world = new World();
             pool = new Pool();
+            network = new Network();
+            network.connect();
 
             // var cowSprite = Helper.buttonCreate(assets.cowTexture,
             //          width/2, height/2, width/5);

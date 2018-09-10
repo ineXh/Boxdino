@@ -42,6 +42,7 @@ window.characterRight = null;
 
 window.world = null;
 window.pool = null;
+window.network = null;
 window.stageObjects = {};
 window.shapes = [];
 window.bodies = [];
