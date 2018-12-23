@@ -73,7 +73,7 @@ window.getMouse = function(event, touchobj){
 
 }
 var onTouchStart = function(event){
-	console.log('onTouchStart')
+	// console.log('onTouchStart')
 	getMouse(event, event.changedTouches[0]);
 	console.log('mouse pos: x ' + mousePos.xPct + ', y ' + mousePos.yPct);
 	socket.emit('spawn', {x: mousePos.xPct, y: mousePos.yPct});

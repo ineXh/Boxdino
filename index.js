@@ -7,7 +7,7 @@ app.set('port', port);
 app.use(express.static('src'));
 app.get('/', function(req, res){
 	//res.sendFile(__dirname + '/public/index.html');
-	res.sendFile(__dirname + '/src/dev.html');
+	res.sendFile(__dirname + '/src/playground.html');
 })
 require('./app/routes')(app, __dirname);
 
